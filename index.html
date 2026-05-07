@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Steam & Sabotage: 1870s Survival Train</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- --- LOBBY UI --- -->
+  <div id="lobby-view" class="overlay visible">
+    <h1>Steam & Sabotage</h1>
+    <div class="player-name">
+      <input id="name-input" placeholder="Your Name" maxlength="12" />
+    </div>
+    <div id="lobby-controls">
+      <button id="create-lobby">Create New Lobby</button>
+      <button id="refresh-lobbies">Refresh Public Lobbies</button>
+      <div>
+        <input id="lobby-code" placeholder="Enter Lobby Code">
+        <button id="join-lobby">Join Lobby</button>
+      </div>
+      <label><input type="checkbox" id="private-toggle"> Private Lobby</label>
+      <label><input type="checkbox" id="traitor-toggle"> Traitor Mode</label>
+      <input id="lobby-password" placeholder="Password" type="password" maxlength="18" style="display:none;"/>
+    </div>
+    <hr>
+    <div id="lobby-list-container">
+      <h2>Available Lobbies</h2>
+      <ul id="lobby-list"></ul>
+    </div>
+    <div id="in-lobby" style="display:none;">
+      <h2 id="current-lobby-title"></h2>
+      <ul id="player-list"></ul>
+      <button id="start-game" style="display:none;">Start!</button>
+      <button id="leave-lobby">Leave</button>
+    </div>
+  </div>
+
+  <!-- --- ROLE REVEAL --- -->
+  <div id="role-reveal" class="overlay">
+    <div id="role-reveal-inner"></div>
+  </div>
+
+  <!-- --- GAME CANVAS & UI --- -->
+  <div id="game-container" style="display:none;">
+    <canvas id="game-canvas" width="1080" height="600"></canvas>
+    
+    <!-- Action Buttons (Dynamic, always large/touch) -->
+    <div id="actions">
+      <button id="fire-btn">Fire</button>
+      <button id="interact-btn">Interact</button>
+      <button id="reload-btn">Reload</button>
+      <button id="mine-btn">Mine</button>
+      <button id="steam-btn">Steam Valve</button>
+      <button id="eat-btn">Eat</button>
+      <button id="bomb-btn">Bomb</button>
+      <button id="barrel-btn">Barrel</button>
+      <button id="light-btn">Light</button>
+    </div>
+
+    <!-- Dual Joysticks for Mobile Mode -->
+    <div id="mobile-controls" style="display:none;">
+      <div id="left-joystick" class="joystick"></div>
+      <div id="right-joystick" class="joystick"></div>
+    </div>
+    
+    <!-- Inventory/Storage UI Overlay -->
+    <div id="inventory-modal" class="modal" style="display:none;">
+      <div class="modal-inner">
+        <h2>Inventory</h2>
+        <div id="personal-inventory"></div>
+        <h3>Storage Car</h3>
+        <div id="storage-sliders"></div>
+        <button id="close-inv">Close</button>
+      </div>
+    </div>
+    
+    <!-- Gambling Car Tables Overlay -->
+    <div id="gamble-modal" class="modal" style="display:none;">
+      <div class="modal-inner">
+        <h2>Gambling Table</h2>
+        <div id="gamble-tabs">
+          <button data-tab="roulette">Roulette</button>
+          <button data-tab="poker">Poker</button>
+          <button data-tab="horse">Horse Racing</button>
+        </div>
+        <div id="gamble-content"></div>
+        <button id="close-gamble">Close</button>
+      </div>
+    </div>
+
+    <!-- Hall of Fame / Victory -->
+    <div id="victory-modal" class="modal" style="display:none;">
+      <div class="modal-inner">
+        <h2>Hall of Fame</h2>
+        <div id="victory-content"></div>
+        <button id="close-victory">Back to Lobby</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- --- MOBILE MODE TOGGLE --- -->
+  <div id="settings-btn">
+    <button id="mobile-toggle">Mobile Mode: OFF</button>
+  </div>
+
+  <!-- Socket.io Client -->
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
