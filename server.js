@@ -6,6 +6,10 @@ const { Server } = require('socket.io');
 const { v4: uuidv4 } = require('uuid');
 
 const app = express();
+
+// Serve static files (index.html, main.js, styles.css, etc.)
+app.use(express.static(__dirname));
+
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 const PORT = process.env.PORT || 3000;
@@ -301,6 +305,11 @@ function handleDisconnect(socket) {
 
   if (!lobby.players.length) delete lobbies[lobbyId];
 }
+
+// --- Serve index.html for SPA routes ---
+app.get('*', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
+});
 
 // --- START SERVER ---
 server.listen(PORT, () => {
