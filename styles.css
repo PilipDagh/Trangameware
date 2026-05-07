@@ -1,0 +1,259 @@
+/* --- General Reset --- */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #18130f;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  color: #f7e0bb;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+body, #game-container, #lobby-view {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(18,10,4,0.87);
+  display: none;
+  z-index: 99;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.overlay.visible {
+  display: flex;
+}
+
+#lobby-view {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: linear-gradient(180deg, #453526 0%, #18130f 100%);
+  z-index: 50;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 28px;
+}
+
+.player-name {
+  margin-bottom: 10px;
+}
+input, button {
+  font-size: 1.1em;
+  padding: 6px 12px;
+  margin: 4px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+button {
+  background: #856344;
+  color: #fff6e0;
+  font-weight: bold;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+button:active, button.selected {
+  background: #c69361;
+}
+
+#lobby-list-container {
+  width: 300px;
+  max-width: 96vw;
+  margin: auto;
+}
+#lobby-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#lobby-list li {
+  margin: 0 0 6px;
+  background: #322219;
+  border-radius: 4px;
+  padding: 7px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#in-lobby {
+  margin: 13px auto;
+}
+#current-lobby-title { margin-bottom: 3px; }
+#player-list {
+  list-style: none;
+  margin: 0; padding: 0 6px;
+  min-height: 40px;
+}
+
+/* --- Game Canvas & Main Container --- */
+#game-container {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #30251b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-canvas {
+  display: block;
+  background: linear-gradient(180deg, #715946 0, #bab082 81%, #5d7664 100%);
+  box-shadow: 0 0 24px 0 #453119dd;
+  margin: auto;
+  border: 4px solid #423217;
+  border-radius: 16px;
+  width: 95vw;
+  max-width: 1080px;
+  height: 95vh;
+  max-height: 600px;
+}
+
+/* --- Action Buttons --- */
+#actions {
+  position: absolute;
+  bottom: 18px;
+  right: 18px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+#actions button {
+  font-size: 1.1em;
+  min-width: 120px;
+  min-height: 46px;
+  box-shadow: 0 3px 12px #0005;
+  border: 3px solid #ad8756;
+  border-radius: 13px;
+  background: linear-gradient(90deg, #764921 0, #d9b880 100%);
+}
+
+/* --- Modal/UI --- */
+.modal {
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  background: rgba(21,16,6,0.89);
+  display: flex;
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+}
+.modal-inner {
+  background: #322219;
+  padding: 34px 30px 26px 30px;
+  border-radius: 17px;
+  min-width: 240px;
+  max-width: 380px;
+  margin: auto;
+  color: #ffebb6;
+  box-shadow: 0 2px 30px #0008;
+}
+#victory-modal h2 {
+  color: #ffe17d;
+}
+#victory-content {
+  font-size: 1.2em;
+  margin-top: 12px;
+}
+
+#inventory-modal h2, #gamble-modal h2, #victory-modal h2 {
+  margin-top: 0;
+}
+#personal-inventory, #storage-sliders, #gamble-content {
+  margin: 13px 0;
+}
+
+#close-inv, #close-gamble, #close-victory {
+  margin-top: 13px;
+}
+
+/* --- Role Reveal --- */
+#role-reveal {
+  background: #1f0f0f;
+  color: #fff5d0;
+  font-size: 2.3em;
+  letter-spacing: 1px;
+  animation: roleRevealPulse 2.5s infinite alternate;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+#role-reveal.visible {
+  display: flex;
+}
+#role-reveal-inner {
+  background: rgba(31,14,2,0.98);
+  border: 8px solid #cfad61;
+  border-radius: 32px;
+  padding: 50px 70px;
+  font-size: 2.0em;
+  box-shadow: 0 0 60px #e4d38d90;
+}
+@keyframes roleRevealPulse {
+  0% { background: #201010;}
+  100% { background: #332d15;}
+}
+
+/* --- Hall of Fame --- */
+#victory-modal {
+  color: #ffe78e;
+}
+#victory-content {
+  font-size: 1.2em;
+  line-height: 1.5;
+}
+
+#settings-btn {
+  position: fixed;
+  top: 13px; right: 16px;
+  z-index: 101;
+}
+#mobile-toggle {
+  background: #2f2d2f;
+  border: 2px solid #aeaeae;
+  color: #d8d4b7;
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+/* --- Joystick Controls --- */
+#mobile-controls {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 36vh;
+  z-index: 80;
+  pointer-events: none;
+}
+.joystick {
+  position: absolute;
+  width: 105px;
+  height: 105px;
+  background: radial-gradient(ellipse at center, #3e2b14 60%, #27201a 100%);
+  border: 2px solid #ffe48988;
+  border-radius: 50%;
+  opacity: 0.86;
+  pointer-events: auto;
+  touch-action: none;
+  box-shadow: 0 1px 18px #a58648b7;
+}
+#left-joystick { left: 34px; bottom: 34px; }
+#right-joystick { right: 40px; bottom: 34px; }
+
+@media (max-width: 720px), (max-height: 520px) {
+  #game-canvas { width: 99vw; height: 78vw; max-width: unset; max-height: unset; }
+  #actions { flex-direction: row; bottom: 6px; right: 6px; gap: 8px; }
+}
