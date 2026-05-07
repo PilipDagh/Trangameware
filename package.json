@@ -1,0 +1,16 @@
+{
+  "name": "trangameware",
+  "version": "1.0.0",
+  "description": "Okwellmaybe",
+  "main": "server.js",
+  "engines": { "node": ">=18.0.0" },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "http": "^0.0.1-security",
+    "socket.io": "^4.7.5",
+    "uuid": "^9.0.1"
+  }
+}
